@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Monitoring - CropWise</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🌱 CropWise</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/index" class="nav-link">Home</a>
+                <a href="/soil-analysis" class="nav-link">Soil Analysis</a>
+                <a href="/recommendations" class="nav-link">Recommendations</a>
+                <a href="/fertilizer" class="nav-link">Fertilizer Guide</a>
+                <a href="/weather" class="nav-link active">Weather</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>🌤️ Weather Monitoring</h1>
+            <p>Real-time weather data and agricultural forecasts</p>
+        </div>
+    </section>
+
+    <!-- Weather Dashboard -->
+    <section class="weather-section">
+        <div class="container">
+            <div class="weather-grid">
+                <div class="weather-card current">
+                    <h2>Current Conditions</h2>
+                    <div class="weather-main">
+                        <div class="weather-icon">☀️</div>
+                        <div class="weather-temp">28°C</div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Humidity</span>
+                            <span class="detail-value">65%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Wind Speed</span>
+                            <span class="detail-value">12 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Pressure</span>
+                            <span class="detail-value">1013 hPa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather-card rainfall">
+                    <h2>Rainfall Data</h2>
+                    <div class="rainfall-chart">
+                        <div class="chart-header">
+                            <span>Last 7 Days (mm)</span>
+                        </div>
+                        <div class="rainfall-bars">
+                            <div class="rain-bar" style="height: 60%"><span>12</span></div>
+                            <div class="rain-bar" style="height: 30%"><span>6</span></div>
+                            <div class="rain-bar" style="height: 0%"><span>0</span></div>
+                            <div class="rain-bar" style="height: 80%"><span>16</span></div>
+                            <div class="rain-bar" style="height: 45%"><span>9</span></div>
+                            <div class="rain-bar" style="height: 25%"><span>5</span></div>
+                            <div class="rain-bar" style="height: 70%"><span>14</span></div>
+                        </div>
+                        <div class="chart-labels">
+                            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                        </div>
+                    </div>
+                    <div class="rainfall-summary">
+                        <p><strong>Weekly Total:</strong> 62mm</p>
+                        <p><strong>Monthly Average:</strong> 85mm</p>
+                    </div>
+                </div>
+
+                <div class="weather-card forecast">
+                    <h2>5-Day Forecast</h2>
+                    <div class="forecast-list">
+                        <div class="forecast-item">
+                            <span class="forecast-day">Today</span>
+                            <span class="forecast-icon">☀️</span>
+                            <span class="forecast-temp">28°/18°</span>
+                            <span class="forecast-rain">0%</span>
+                        </div>
+                        <div class="forecast-item">
+                            <span class="forecast-day">Tomorrow</span>
+                            <span class="forecast-icon">⛅</span>
+                            <span class="forecast-temp">26°/16°</span>
+                            <span class="forecast-rain">20%</span>
+                        </div>
+                        <div class="forecast-item">
+                            <span class="forecast-day">Wednesday</span>
+                            <span class="forecast-icon">🌧️</span>
+                            <span class="forecast-temp">24°/15°</span>
+                            <span class="forecast-rain">80%</span>
+                        </div>
+                        <div class="forecast-item">
+                            <span class="forecast-day">Thursday</span>
+                            <span class="forecast-icon">🌦️</span>
+                            <span class="forecast-temp">25°/17°</span>
+                            <span class="forecast-rain">60%</span>
+                        </div>
+                        <div class="forecast-item">
+                            <span class="forecast-day">Friday</span>
+                            <span class="forecast-icon">☀️</span>
+                            <span class="forecast-temp">29°/19°</span>
+                            <span class="forecast-rain">10%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather-card alerts">
+                    <h2>Agricultural Alerts</h2>
+                    <div class="alert-list">
+                        <div class="alert-item warning">
+                            <div class="alert-icon">⚠️</div>
+                            <div class="alert-content">
+                                <h4>High Humidity Alert</h4>
+                                <p>Humidity levels above 70% may increase disease risk</p>
+                            </div>
+                        </div>
+                        <div class="alert-item info">
+                            <div class="alert-icon">💧</div>
+                            <div class="alert-content">
+                                <h4>Irrigation Recommendation</h4>
+                                <p>Good conditions for watering crops today</p>
+                            </div>
+                        </div>
+                        <div class="alert-item success">
+                            <div class="alert-icon">🌱</div>
+                            <div class="alert-content">
+                                <h4>Optimal Growing Conditions</h4>
+                                <p>Temperature and humidity ideal for crop growth</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Tips -->
+    <section class="tips-section">
+        <div class="container">
+            <h2>Weather-Based Farming Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>🌡️ Temperature</h3>
+                    <p>Most crops grow best between 20-30°C. Monitor for extreme temperatures that may stress plants.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>💧 Humidity</h3>
+                    <p>High humidity (>80%) increases disease risk. Ensure good air circulation and consider fungicide application.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>🌧️ Rainfall</h3>
+                    <p>Track rainfall to optimize irrigation. Most crops need 25-50mm per week during growing season.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>💨 Wind</h3>
+                    <p>Strong winds (>25 km/h) can damage crops. Consider windbreaks for protection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🌱 CropWise</h3>
+                    <p>Empowering farmers with smart agricultural solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="soil-analysis.html">Soil Analysis</a>
+                    <a href="weather.html">Weather Data</a>
+                    <a href="recommendations.html">Crop Guide</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 info@cropwise.com</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CropWise. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Simulate real-time weather updates
+        function updateWeatherData() {
+            const temp = Math.floor(Math.random() * 10) + 25;
+            const humidity = Math.floor(Math.random() * 20) + 60;
+            
+            document.querySelector('.weather-temp').textContent = temp + '°C';
+            document.querySelector('.detail-value').textContent = humidity + '%';
+        }
+
+        // Update weather every 30 seconds (simulation)
+        setInterval(updateWeatherData, 30000);
+    </script>
+</body>
+</html>

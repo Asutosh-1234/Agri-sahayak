@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Analysis - CropWise</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🌱 CropWise</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/soil-analysis" class="nav-link active">Soil Analysis</a>
+                <a href="/recommendations" class="nav-link">Recommendations</a>
+                <a href="/fertilizer" class="nav-link">Fertilizer Guide</a>
+                <a href="/weather" class="nav-link">Weather</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>🧪 Soil Analysis</h1>
+            <p>Enter your soil parameters to get detailed analysis and recommendations for your crops <br>(Using Sensors)</p>
+        </div>
+    </section>
+
+    <section class="analysis-section">
+        <div class="container">
+            <div class="analysis-grid">
+                <div class="form-container">
+                    <h2>Soil Parameters</h2>
+                    <form class="soil-form" method="POST" action="/analyze-soil">
+                        <div class="form-group">
+                            <label for="nitrogen">Nitrogen (N) - mg/kg</label>
+                            <input type="number" id="nitrogen" name="nitrogen" placeholder="Enter nitrogen level" min="0" max="1000" step="0.1" required value="{{ nitrogen if nitrogen is not none }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="phosphorus">Phosphorus (P) - mg/kg</label>
+                            <input type="number" id="phosphorus" name="phosphorus" placeholder="Enter phosphorus level" min="0" max="1000" step="0.1" required value="{{ phosphorus if phosphorus is not none }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="potassium">Potassium (K) - mg/kg</label>
+                            <input type="number" id="potassium" name="potassium" placeholder="Enter potassium level" min="0" max="1000" step="0.1" required value="{{ potassium if potassium is not none }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="ph">pH Level</label>
+                            <input type="number" id="ph" name="ph" placeholder="Enter pH level" min="0" max="14" step="0.1" required value="{{ ph if ph is not none }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Analyze Soil</button>
+                    </form>
+                </div>
+
+                <div class="results-container">
+                    <h2>Analysis Results</h2>
+                    <div class="results-placeholder">
+                        {% if soil_health %}
+                            <div class="result-item">
+                                <h3>Soil Health Status: <span class="status {{ soil_health | lower | replace(' ', '-') }}">{{ soil_health }}</span></h3>
+                                <p><strong>pH Level:</strong> {{ ph }} mg/kg <span class="status {{ analysis_results.ph_status | lower | replace(' ', '-') }}">{{ analysis_results.ph_status }}</span></p>
+                                {% if analysis_results.ph_recommendation %}<p class="recommendation">{{ analysis_results.ph_recommendation }}</p>{% endif %}
+
+                                <p><strong>Nitrogen:</strong> {{ nitrogen }} mg/kg <span class="status {{ analysis_results.nitrogen_status | lower | replace(' ', '-') }}">{{ analysis_results.nitrogen_status }}</span></p>
+                                {% if analysis_results.nitrogen_recommendation %}<p class="recommendation">{{ analysis_results.nitrogen_recommendation }}</p>{% endif %}
+
+                                <p><strong>Phosphorus:</strong> {{ phosphorus }} mg/kg <span class="status {{ analysis_results.phosphorus_status | lower | replace(' ', '-') }}">{{ analysis_results.phosphorus_status }}</span></p>
+                                {% if analysis_results.phosphorus_recommendation %}<p class="recommendation">{{ analysis_results.phosphorus_recommendation }}</p>{% endif %}
+
+                                <p><strong>Potassium:</strong> {{ potassium }} mg/kg <span class="status {{ analysis_results.potassium_status | lower | replace(' ', '-') }}">{{ analysis_results.potassium_status }}</span></p>
+                                {% if analysis_results.potassium_recommendation %}<p class="recommendation">{{ analysis_results.potassium_recommendation }}</p>{% endif %}
+
+                            </div>
+                        {% else %}
+                            <p>Enter soil parameters to see detailed analysis</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tips-section">
+        <div class="container">
+            <h2>Soil Health Guidelines</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>Nitrogen (N)</h3>
+                    <p><strong>Optimal Range:</strong> 40-80 mg/kg</p>
+                    <p>Essential for leaf growth and chlorophyll production. Deficiency causes yellowing of leaves.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>Phosphorus (P)</h3>
+                    <p><strong>Optimal Range:</strong> 20-50 mg/kg</p>
+                    <p>Critical for root development and flowering. Important for energy transfer in plants.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>Potassium (K)</h3>
+                    <p><strong>Optimal Range:</strong> 100-300 mg/kg</p>
+                    <p>Enhances disease resistance and water regulation. Improves fruit quality.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>pH Level</h3>
+                    <p><strong>Optimal Range:</strong> 6.0-7.5</p>
+                    <p>Affects nutrient availability. Most crops prefer slightly acidic to neutral soil.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🌱 CropWise</h3>
+                    <p>Empowering farmers with smart agricultural solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="/predict-crop">Soil Analysis</a>
+                    <a href="/weather">Weather Data</a>
+                    <a href="/recommendations">Crop Guide</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 info@cropwise.com</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CropWise. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+
+  :root {
+    --primary-green: #38a169;
+    --light-green: #e6f5e8;
+    --soft-gray: #f7fafc;
+    --dark-text: #2d3748;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to right, #f7fdf7, #f0fdf4);
+    color: var(--dark-text);
+  }
+
+  /* Glass card effect */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    box-shadow: 0 6px 30px rgba(56, 161, 105, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 45px rgba(56, 161, 105, 0.2);
+  }
+
+  /* Smooth section animations */
+  section {
+    animation: fadeSlideIn 0.6s ease both;
+    animation-delay: 0.2s;
+  }
+
+  @keyframes fadeSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Highlight anchor links */
+  a {
+    transition: all 0.3s ease;
+  }
+
+  a:hover {
+    color: var(--primary-green);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Fancy button (if needed) */
+  .btn-green {
+    background: var(--primary-green);
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(56, 161, 105, 0.2);
+  }
+
+  .btn-green:hover {
+    background: #2f855a;
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(56, 161, 105, 0.3);
+  }
+
+  /* Custom heading */
+  h1, h2 {
+    color: var(--primary-green);
+    font-weight: 700;
+  }
+
+  /* Footer glow */
+  footer a:hover {
+    text-shadow: 0 0 8px rgba(144, 255, 170, 0.6);
+  }

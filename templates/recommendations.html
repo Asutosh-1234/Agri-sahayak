@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendations - CropWise</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🌱 CropWise</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/index" class="nav-link">Home</a>
+                <a href="/soil-analysis" class="nav-link">Soil Analysis</a>
+                <a href="/recommendations" class="nav-link active">Recommendations</a>
+                <a href="/fertilizer" class="nav-link">Fertilizer Guide</a>
+                <a href="/weather" class="nav-link">Weather</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>🌾 Crop Recommendations</h1>
+            <p>AI-powered crop suggestions based on your soil and climate conditions</p>
+        </div>
+    </section>
+
+    <!-- Recommendation Form -->
+    <section class="recommendation-form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Get Personalized Recommendations</h2>
+                <form class="recommendation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="season">Growing Season</label>
+                            <select id="season" name="season">
+                                <option value="">Select Season</option>
+                                <option value="spring">Spring</option>
+                                <option value="summer">Summer</option>
+                                <option value="monsoon">Monsoon</option>
+                                <option value="winter">Winter</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="farm-size">Farm Size (acres)</label>
+                            <input type="number" id="farm-size" name="farm-size" placeholder="Enter farm size" min="0.1" step="0.1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="soil-type">Soil Type</label>
+                            <select id="soil-type" name="soil-type">
+                                <option value="">Select Soil Type</option>
+                                <option value="clay">Clay</option>
+                                <option value="sandy">Sandy</option>
+                                <option value="loamy">Loamy</option>
+                                <option value="silty">Silty</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="water-source">Water Source</label>
+                            <select id="water-source" name="water-source">
+                                <option value="">Select Water Source</option>
+                                <option value="rainfall">Rainfall Dependent</option>
+                                <option value="irrigation">Irrigation Available</option>
+                                <option value="both">Both</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get Recommendations</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Results -->
+    <section class="recommendations-section">
+        <div class="container">
+            <div class="recommendations-container" id="recommendations-container">
+                <div class="placeholder-message">
+                    <h2>🌱 Ready to Discover Your Perfect Crops?</h2>
+                    <p>Fill out the form above to get personalized crop recommendations based on your specific conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Crops -->
+    <section class="popular-crops-section">
+        <div class="container">
+            <h2>Popular Crop Options</h2>
+            <div class="crops-grid">
+                <div class="crop-card">
+                    <div class="crop-icon">🌾</div>
+                    <h3>Rice</h3>
+                    <div class="crop-details">
+                        <p><strong>Season:</strong> Monsoon</p>
+                        <p><strong>Soil:</strong> Clay, Loamy</p>
+                        <p><strong>Water:</strong> High</p>
+                        <p><strong>Yield:</strong> 4-6 tons/hectare</p>
+                    </div>
+                    <div class="crop-benefits">
+                        <span class="benefit-tag">High Demand</span>
+                        <span class="benefit-tag">Staple Crop</span>
+                    </div>
+                </div>
+                
+                <div class="crop-card">
+                    <div class="crop-icon">🌽</div>
+                    <h3>Maize</h3>
+                    <div class="crop-details">
+                        <p><strong>Season:</strong> Summer</p>
+                        <p><strong>Soil:</strong> Loamy, Sandy</p>
+                        <p><strong>Water:</strong> Medium</p>
+                        <p><strong>Yield:</strong> 5-8 tons/hectare</p>
+                    </div>
+                    <div class="crop-benefits">
+                        <span class="benefit-tag">Versatile</span>
+                        <span class="benefit-tag">Good Price</span>
+                    </div>
+                </div>
+                
+                <div class="crop-card">
+                    <div class="crop-icon">🥔</div>
+                    <h3>Potato</h3>
+                    <div class="crop-details">
+                        <p><strong>Season:</strong> Winter</p>
+                        <p><strong>Soil:</strong> Sandy, Loamy</p>
+                        <p><strong>Water:</strong> Medium</p>
+                        <p><strong>Yield:</strong> 20-30 tons/hectare</p>
+                    </div>
+                    <div class="crop-benefits">
+                        <span class="benefit-tag">High Yield</span>
+                        <span class="benefit-tag">Short Duration</span>
+                    </div>
+                </div>
+                
+                <div class="crop-card">
+                    <div class="crop-icon">🍅</div>
+                    <h3>Tomato</h3>
+                    <div class="crop-details">
+                        <p><strong>Season:</strong> Winter</p>
+                        <p><strong>Soil:</strong> Loamy</p>
+                        <p><strong>Water:</strong> Medium</p>
+                        <p><strong>Yield:</strong> 40-60 tons/hectare</p>
+                    </div>
+                    <div class="crop-benefits">
+                        <span class="benefit-tag">High Value</span>
+                        <span class="benefit-tag">Market Demand</span>
+                    </div>
+                </div>
+                
+                <div class="crop-card">
+                    <div class="crop-icon">🌿</div>
+                    <h3>Sugarcane</h3>
+                    <div class="crop-details">
+                        <p><strong>Season:</strong> Year-round</p>
+                        <p><strong>Soil:</strong> Clay, Loamy</p>
+                        <p><strong>Water:</strong> High</p>
+                        <p><strong>Yield:</strong> 70-100 tons/hectare</p>
+                    </div>
+                    <div class="crop-benefits">
+                        <span class="benefit-tag">Long Term</span>
+                        <span class="benefit-tag">Industrial Use</span>
+                    </div>
+                </div>
+                
+                <div class="crop-card">
+                    <div class="crop-icon">🌱</div>
+                    <h3>Soybean</h3>
+                    <div class="crop-details">
+                        <p><strong>Season:</strong> Monsoon</p>
+                        <p><strong>Soil:</strong> Loamy, Sandy</p>
+                        <p><strong>Water:</strong> Medium</p>
+                        <p><strong>Yield:</strong> 2-3 tons/hectare</p>
+                    </div>
+                    <div class="crop-benefits">
+                        <span class="benefit-tag">Protein Rich</span>
+                        <span class="benefit-tag">Export Potential</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🌱 CropWise</h3>
+                    <p>Empowering farmers with smart agricultural solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="soil-analysis.html">Soil Analysis</a>
+                    <a href="weather.html">Weather Data</a>
+                    <a href="recommendations.html">Crop Guide</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 info@cropwise.com</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CropWise. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Recommendation form handling
+        document.querySelector('.recommendation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const season = document.getElementById('season').value;
+            const farmSize = document.getElementById('farm-size').value;
+            const soilType = document.getElementById('soil-type').value;
+            const waterSource = document.getElementById('water-source').value;
+
+            if (!season || !farmSize || !soilType || !waterSource) {
+                alert('Please fill in all fields to get recommendations.');
+                return;
+            }
+
+            generateRecommendations(season, farmSize, soilType, waterSource);
+        });
+
+        function generateRecommendations(season, farmSize, soilType, waterSource) {
+            const recommendations = getRecommendationsForConditions(season, soilType, waterSource);
+            
+            const container = document.getElementById('recommendations-container');
+            container.innerHTML = `
+                <h2>🎯 Recommended Crops for Your Farm</h2>
+                <div class="recommendation-summary">
+                    <p><strong>Season:</strong> ${season.charAt(0).toUpperCase() + season.slice(1)}</p>
+                    <p><strong>Farm Size:</strong> ${farmSize} acres</p>
+                    <p><strong>Soil Type:</strong> ${soilType.charAt(0).toUpperCase() + soilType.slice(1)}</p>
+                    <p><strong>Water Source:</strong> ${waterSource.charAt(0).toUpperCase() + waterSource.slice(1)}</p>
+                </div>
+                <div class="recommended-crops">
+                    ${recommendations.map(crop => `
+                        <div class="recommended-crop">
+                            <div class="crop-header">
+                                <span class="crop-icon">${crop.icon}</span>
+                                <h3>${crop.name}</h3>
+                                <span class="suitability ${crop.suitability.toLowerCase()}">${crop.suitability}</span>
+                            </div>
+                            <div class="crop-info">
+                                <p><strong>Expected Yield:</strong> ${crop.yield}</p>
+                                <p><strong>Growing Period:</strong> ${crop.period}</p>
+                                <p><strong>Investment:</strong> ${crop.investment}</p>
+                                <p><strong>Market Price:</strong> ${crop.price}</p>
+                            </div>
+                            <div class="crop-advantages">
+                                <h4>Advantages:</h4>
+                                <ul>
+                                    ${crop.advantages.map(advantage => `<li>${advantage}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function getRecommendationsForConditions(season, soilType, waterSource) {
+            // Simplified recommendation logic
+            const cropDatabase = {
+                spring: {
+                    loamy: [
+                        {
+                            name: 'Maize',
+                            icon: '🌽',
+                            suitability: 'Excellent',
+                            yield: '6-8 tons/hectare',
+                            period: '90-120 days',
+                            investment: 'Medium',
+                            price: '₹20-25/kg',
+                            advantages: ['High demand', 'Good market price', 'Suitable for mechanization']
+                        },
+                        {
+                            name: 'Sunflower',
+                            icon: '🌻',
+                            suitability: 'Good',
+                            yield: '1.5-2 tons/hectare',
+                            period: '90-110 days',
+                            investment: 'Low',
+                            price: '₹40-50/kg',
+                            advantages: ['Oil crop', 'Drought tolerant', 'Good rotation crop']
+                        }
+                    ]
+                },
+                monsoon: {
+                    clay: [
+                        {
+                            name: 'Rice',
+                            icon: '🌾',
+                            suitability: 'Excellent',
+                            yield: '4-6 tons/hectare',
+                            period: '120-150 days',
+                            investment: 'Medium',
+                            price: '₹18-22/kg',
+                            advantages: ['Staple crop', 'High demand', 'Government support']
+                        }
+                    ]
+                }
+            };
+
+            // Return default recommendations if specific combination not found
+            return cropDatabase[season]?.[soilType] || [
+                {
+                    name: 'Mixed Vegetables',
+                    icon: '🥬',
+                    suitability: 'Good',
+                    yield: '15-25 tons/hectare',
+                    period: '60-90 days',
+                    investment: 'Medium',
+                    price: '₹15-30/kg',
+                    advantages: ['Diverse income', 'Local market', 'Nutritious']
+                }
+            ];
+        }
+    </script>
+</body>
+</html>

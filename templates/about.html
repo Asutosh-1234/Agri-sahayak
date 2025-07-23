@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - CropWise AI</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🌱 CropWise</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/index" class="nav-link active">Home</a>
+                <a href="/soil-analysis" class="nav-link">Soil Analysis</a>
+                <a href="/recommendations" class="nav-link">Recommendations</a>
+                <a href="/fertilizer" class="nav-link">Fertilizer Guide</a>
+                <a href="/weather" class="nav-link">Weather</a>
+                <a href="/about" class="nav-link">About Us</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-24">
+    <h1 class="text-4xl font-bold text-center text-green-700 mb-10">🌱 About Agri-Sahayak</h1>
+
+    <div class="glass-card p-8 max-w-4xl mx-auto space-y-8">
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">Your Smart Farm Assistant</h2>
+        <p>
+          <strong>Agri-Sahayak</strong> is a smart crop recommendation tool that helps farmers choose the best crops to grow—based on real farm conditions like soil and weather.
+          We use <strong>machine learning</strong> to make farming smarter, easier, and more profitable—especially for small and marginal farmers in India.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">🎯 What’s Our Goal?</h2>
+        <p>
+          To make <strong>precision farming</strong> simple and accessible for every farmer—no expensive equipment needed.
+          Just enter your soil and weather data, and we’ll tell you the most suitable crop to grow!
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">🧠 How It Works</h2>
+        <ul class="list-disc list-inside space-y-1">
+          <li><strong>Soil Nutrients:</strong> Nitrogen (N), Phosphorus (P), Potassium (K)</li>
+          <li><strong>Soil pH Level</strong></li>
+          <li><strong>Weather:</strong> Temperature, Humidity, Rainfall</li>
+        </ul>
+        <p class="mt-2">
+          Our trained ML model uses this data and predicts the <strong>best crop</strong> for your field—instantly!
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">💻 Technologies We Use</h2>
+        <ul class="list-disc list-inside space-y-1">
+          <li>Python & scikit-learn for machine learning</li>
+          <li>pandas, numpy for data analysis</li>
+          <li>matplotlib, seaborn, plotly for charts</li>
+          <li>joblib to save models</li>
+          <li>Streamlit for the user-friendly interface</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">🚀 Key Features</h2>
+        <ul class="list-disc list-inside space-y-1">
+          <li>Real-time crop recommendation</li>
+          <li>Interactive & mobile-friendly interface</li>
+          <li>Graphs for data insights</li>
+          <li>Educational panel for how and why a crop is suggested</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">🌍 Why It Matters</h2>
+        <ul class="list-disc list-inside space-y-1">
+          <li>Empowers smallholders with smart decision-making</li>
+          <li>Reduces overuse of water and fertilizers</li>
+          <li>Increases yield and farm income</li>
+          <li>Aligned with India’s Digital Agriculture Mission</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">🔮 What’s Next?</h2>
+        <ul class="list-disc list-inside space-y-1">
+          <li>Multi-language support</li>
+          <li>Yield & fertilizer prediction features</li>
+          <li>Mobile app integration</li>
+          <li>Explainable AI (XAI) for transparent recommendations</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">🤝 Inspired By</h2>
+        <p>
+          This tool follows the vision of <strong>Agri-Sahayak</strong>—empowering India’s farmers with accessible AI tools, even without costly IoT setups.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-2">📧 Contact Us</h2>
+        <p>
+          Have questions or suggestions? Email us at
+          <a href="mailto:info@cropwiseai.com" class="text-green-600 underline">info@cropwiseai.com</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 CropWise AI. All rights reserved.</p>
+      <div class="flex justify-center space-x-6 mt-4">
+        <a href="about.html" class="text-gray-400 hover:text-white">About</a>
+        <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+        <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

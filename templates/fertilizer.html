@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Guide - CropWise</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🌱 CropWise</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/index" class="nav-link">Home</a>
+                <a href="/soil-analysis" class="nav-link">Soil Analysis</a>
+                <a href="/recommendations" class="nav-link">Recommendations</a>
+                <a href="/fertilizer" class="nav-link active">Fertilizer Guide</a>
+                <a href="/weather" class="nav-link">Weather</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>🧬 Fertilizer Advisory</h1>
+            <p>Customized fertilizer recommendations for optimal crop nutrition</p>
+        </div>
+    </section>
+
+    <!-- Fertilizer Calculator -->
+    <section class="fertilizer-calculator-section">
+        <div class="container">
+            <div class="calculator-grid">
+                <div class="calculator-form">
+                    <h2>Fertilizer Calculator</h2>
+                    <form class="fertilizer-form">
+                        <div class="form-group">
+                            <label for="crop-select">Select Crop</label>
+                            <select id="crop-select" name="crop-select">
+                                <option value="">Choose your crop</option>
+                                <option value="rice">Rice</option>
+                                <option value="wheat">Wheat</option>
+                                <option value="maize">Maize</option>
+                                <option value="potato">Potato</option>
+                                <option value="tomato">Tomato</option>
+                                <option value="sugarcane">Sugarcane</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="area">Farm Area (acres)</label>
+                            <input type="number" id="area" name="area" placeholder="Enter area in acres" min="0.1" step="0.1">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="soil-n">Soil Nitrogen (mg/kg)</label>
+                                <input type="number" id="soil-n" name="soil-n" placeholder="N level" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="soil-p">Soil Phosphorus (mg/kg)</label>
+                                <input type="number" id="soil-p" name="soil-p" placeholder="P level" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="soil-k">Soil Potassium (mg/kg)</label>
+                                <input type="number" id="soil-k" name="soil-k" placeholder="K level" min="0">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calculate Fertilizer Need</button>
+                    </form>
+                </div>
+                
+                <div class="calculator-results">
+                    <h2>Fertilizer Recommendations</h2>
+                    <div class="results-placeholder" id="fertilizer-results">
+                        <p>Enter crop and soil details to get customized fertilizer recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fertilizer Types -->
+    <section class="fertilizer-types-section">
+        <div class="container">
+            <h2>Common Fertilizer Types</h2>
+            <div class="fertilizer-grid">
+                <div class="fertilizer-card">
+                    <div class="fertilizer-header">
+                        <h3>Urea (46-0-0)</h3>
+                        <span class="nutrient-badge nitrogen">High N</span>
+                    </div>
+                    <div class="fertilizer-content">
+                        <p><strong>Nitrogen Content:</strong> 46%</p>
+                        <p><strong>Best For:</strong> Leafy growth, green vegetables</p>
+                        <p><strong>Application:</strong> Split doses during growing season</p>
+                        <p><strong>Rate:</strong> 100-200 kg/hectare</p>
+                    </div>
+                    <div class="fertilizer-benefits">
+                        <span class="benefit">Quick Release</span>
+                        <span class="benefit">Cost Effective</span>
+                    </div>
+                </div>
+
+                <div class="fertilizer-card">
+                    <div class="fertilizer-header">
+                        <h3>DAP (18-46-0)</h3>
+                        <span class="nutrient-badge phosphorus">High P</span>
+                    </div>
+                    <div class="fertilizer-content">
+                        <p><strong>N-P-K:</strong> 18-46-0</p>
+                        <p><strong>Best For:</strong> Root development, flowering</p>
+                        <p><strong>Application:</strong> Basal application at sowing</p>
+                        <p><strong>Rate:</strong> 100-150 kg/hectare</p>
+                    </div>
+                    <div class="fertilizer-benefits">
+                        <span class="benefit">Root Growth</span>
+                        <span class="benefit">Early Stage</span>
+                    </div>
+                </div>
+
+                <div class="fertilizer-card">
+                    <div class="fertilizer-header">
+                        <h3>MOP (0-0-60)</h3>
+                        <span class="nutrient-badge potassium">High K</span>
+                    </div>
+                    <div class="fertilizer-content">
+                        <p><strong>Potassium Content:</strong> 60%</p>
+                        <p><strong>Best For:</strong> Fruit quality, disease resistance</p>
+                        <p><strong>Application:</strong> Split application</p>
+                        <p><strong>Rate:</strong> 50-100 kg/hectare</p>
+                    </div>
+                    <div class="fertilizer-benefits">
+                        <span class="benefit">Disease Resistance</span>
+                        <span class="benefit">Quality Improvement</span>
+                    </div>
+                </div>
+
+                <div class="fertilizer-card">
+                    <div class="fertilizer-header">
+                        <h3>NPK Complex</h3>
+                        <span class="nutrient-badge balanced">Balanced</span>
+                    </div>
+                    <div class="fertilizer-content">
+                        <p><strong>Common Ratios:</strong> 10-26-26, 12-32-16</p>
+                        <p><strong>Best For:</strong> General crop nutrition</p>
+                        <p><strong>Application:</strong> Basal + top dressing</p>
+                        <p><strong>Rate:</strong> 150-250 kg/hectare</p>
+                    </div>
+                    <div class="fertilizer-benefits">
+                        <span class="benefit">Complete Nutrition</span>
+                        <span class="benefit">Convenient</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Schedule -->
+    <section class="schedule-section">
+        <div class="container">
+            <h2>Fertilizer Application Schedule</h2>
+            <div class="schedule-tabs">
+                <button class="tab-button active" onclick="showSchedule('rice')">Rice</button>
+                <button class="tab-button" onclick="showSchedule('wheat')">Wheat</button>
+                <button class="tab-button" onclick="showSchedule('maize')">Maize</button>
+                <button class="tab-button" onclick="showSchedule('tomato')">Tomato</button>
+            </div>
+            
+            <div class="schedule-content">
+                <div class="schedule-table active" id="rice-schedule">
+                    <h3>Rice Fertilizer Schedule</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Stage</th>
+                                <th>Days After Sowing</th>
+                                <th>Fertilizer</th>
+                                <th>Quantity (kg/hectare)</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Basal</td>
+                                <td>0</td>
+                                <td>DAP + MOP</td>
+                                <td>100 + 50</td>
+                                <td>Root establishment</td>
+                            </tr>
+                            <tr>
+                                <td>Tillering</td>
+                                <td>20-25</td>
+                                <td>Urea</td>
+                                <td>100</td>
+                                <td>Vegetative growth</td>
+                            </tr>
+                            <tr>
+                                <td>Panicle Initiation</td>
+                                <td>45-50</td>
+                                <td>Urea</td>
+                                <td>50</td>
+                                <td>Grain formation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="schedule-table" id="wheat-schedule">
+                    <h3>Wheat Fertilizer Schedule</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Stage</th>
+                                <th>Days After Sowing</th>
+                                <th>Fertilizer</th>
+                                <th>Quantity (kg/hectare)</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Basal</td>
+                                <td>0</td>
+                                <td>NPK (12-32-16)</td>
+                                <td>150</td>
+                                <td>Initial nutrition</td>
+                            </tr>
+                            <tr>
+                                <td>Crown Root</td>
+                                <td>20-25</td>
+                                <td>Urea</td>
+                                <td>80</td>
+                                <td>Tillering</td>
+                            </tr>
+                            <tr>
+                                <td>Jointing</td>
+                                <td>60-65</td>
+                                <td>Urea</td>
+                                <td>40</td>
+                                <td>Stem elongation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="schedule-table" id="maize-schedule">
+                    <h3>Maize Fertilizer Schedule</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Stage</th>
+                                <th>Days After Sowing</th>
+                                <th>Fertilizer</th>
+                                <th>Quantity (kg/hectare)</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Basal</td>
+                                <td>0</td>
+                                <td>DAP</td>
+                                <td>120</td>
+                                <td>Root development</td>
+                            </tr>
+                            <tr>
+                                <td>Knee High</td>
+                                <td>30-35</td>
+                                <td>Urea + MOP</td>
+                                <td>120 + 60</td>
+                                <td>Vegetative growth</td>
+                            </tr>
+                            <tr>
+                                <td>Tasseling</td>
+                                <td>55-60</td>
+                                <td>Urea</td>
+                                <td>60</td>
+                                <td>Grain filling</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="schedule-table" id="tomato-schedule">
+                    <h3>Tomato Fertilizer Schedule</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Stage</th>
+                                <th>Days After Transplanting</th>
+                                <th>Fertilizer</th>
+                                <th>Quantity (kg/hectare)</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Basal</td>
+                                <td>0</td>
+                                <td>NPK (10-26-26)</td>
+                                <td>200</td>
+                                <td>Plant establishment</td>
+                            </tr>
+                            <tr>
+                                <td>Flowering</td>
+                                <td>30-35</td>
+                                <td>Urea</td>
+                                <td>100</td>
+                                <td>Flower development</td>
+                            </tr>
+                            <tr>
+                                <td>Fruit Setting</td>
+                                <td>50-55</td>
+                                <td>Urea + MOP</td>
+                                <td>80 + 50</td>
+                                <td>Fruit development</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🌱 CropWise</h3>
+                    <p>Empowering farmers with smart agricultural solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="soil-analysis.html">Soil Analysis</a>
+                    <a href="weather.html">Weather Data</a>
+                    <a href="recommendations.html">Crop Guide</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 info@cropwise.com</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CropWise. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Fertilizer calculator
+        document.querySelector('.fertilizer-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const crop = document.getElementById('crop-select').value;
+            const area = parseFloat(document.getElementById('area').value);
+            const soilN = parseFloat(document.getElementById('soil-n').value) || 0;
+            const soilP = parseFloat(document.getElementById('soil-p').value) || 0;
+            const soilK = parseFloat(document.getElementById('soil-k').value) || 0;
+
+            if (!crop || !area) {
+                alert('Please select crop and enter area');
+                return;
+            }
+
+            calculateFertilizer(crop, area, soilN, soilP, soilK);
+        });
+
+        function calculateFertilizer(crop, area, soilN, soilP, soilK) {
+            const cropRequirements = {
+                rice: { N: 120, P: 60, K: 40 },
+                wheat: { N: 120, P: 60, K: 40 },
+                maize: { N: 150, P: 75, K: 50 },
+                potato: { N: 180, P: 80, K: 100 },
+                tomato: { N: 200, P: 100, K: 150 },
+                sugarcane: { N: 280, P: 90, K: 90 }
+            };
+
+            const requirement = cropRequirements[crop];
+            if (!requirement) return;
+
+            // Calculate deficiency (simplified)
+            const nDeficit = Math.max(0, requirement.N - (soilN * 2.24)); // Convert mg/kg to kg/ha
+            const pDeficit = Math.max(0, requirement.P - (soilP * 2.24));
+            const kDeficit = Math.max(0, requirement.K - (soilK * 2.24));
+
+            // Calculate fertilizer needs
+            const ureaNeeded = Math.round((nDeficit / 0.46) * area);
+            const dapNeeded = Math.round((pDeficit / 0.46) * area);
+            const mopNeeded = Math.round((kDeficit / 0.60) * area);
+
+            const totalCost = (ureaNeeded * 6) + (dapNeeded * 25) + (mopNeeded * 17); // Approximate prices per kg
+
+            document.getElementById('fertilizer-results').innerHTML = `
+                <div class="fertilizer-recommendation">
+                    <h3>Fertilizer Recommendation for ${crop.charAt(0).toUpperCase() + crop.slice(1)}</h3>
+                    <div class="recommendation-details">
+                        <div class="fertilizer-item">
+                            <span class="fertilizer-name">Urea (46% N)</span>
+                            <span class="fertilizer-amount">${ureaNeeded} kg</span>
+                            <span class="fertilizer-cost">₹${ureaNeeded * 6}</span>
+                        </div>
+                        <div class="fertilizer-item">
+                            <span class="fertilizer-name">DAP (18-46-0)</span>
+                            <span class="fertilizer-amount">${dapNeeded} kg</span>
+                            <span class="fertilizer-cost">₹${dapNeeded * 25}</span>
+                        </div>
+                        <div class="fertilizer-item">
+                            <span class="fertilizer-name">MOP (0-0-60)</span>
+                            <span class="fertilizer-amount">${mopNeeded} kg</span>
+                            <span class="fertilizer-cost">₹${mopNeeded * 17}</span>
+                        </div>
+                    </div>
+                    <div class="total-cost">
+                        <strong>Total Estimated Cost: ₹${totalCost}</strong>
+                    </div>
+                    <div class="application-note">
+                        <p><strong>Note:</strong> Apply fertilizers in split doses as per crop schedule for better efficiency.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Schedule tabs functionality
+        function showSchedule(crop) {
+            // Remove active class from all tabs and schedules
+            document.querySelectorAll('.tab-button').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.schedule-table').forEach(schedule => schedule.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding schedule
+            event.target.classList.add('active');
+            document.getElementById(crop + '-schedule').classList.add('active');
+        }
+    </script>
+</body>
+</html>

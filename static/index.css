@@ -1,0 +1,142 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  vertical-align: baseline;
+  line-height: 1;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  text-decoration: none;
+}
+
+
+button,
+input,
+textarea {
+  font: inherit;
+  border: none;
+  outline: none;
+  resize: vertical;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+:root {
+  --primary-color: #7DA215;
+  --primary-color-hover: #679913;
+  --text-color: #DADADA;
+  --background-body: linear-gradient(to top, #0d0d0d, rgba(20, 20, 20, 0.9));
+  --form-background: linear-gradient(to top, #0d0d0d, rgba(255, 255, 255, 0.1));
+  --footer-bg: #1a1a1a;
+  --footer-text: #fff;
+}
+
+/* Body */
+body {
+  min-height: 100%;
+  color: var(--text-color);
+  background: var(--background-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.navbar {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #2a3b14;
+  color: #fff;
+  font-weight: 600;
+}
+
+.logo {
+  font-size: 1.75rem;
+  user-select: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #ff9800;
+  cursor: pointer;
+}
+
+.header {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a3b14;
+}
+
+
+/* Hero Section */
+.hero {
+  margin: 0;
+  width: 100%;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1531058020387-3be344556be6') no-repeat center/cover;
+  color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  user-select: none;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.hero p {
+  font-size: 1.4rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.4;
+}
+
+.hero-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cta-button{
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 0.75rem 1.0rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
