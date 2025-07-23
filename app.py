@@ -1,79 +1,53 @@
-import joblib
-import streamlit as st
-import pandas as pd
-import numpy as np
-import os
-import pickle
-import warnings
+# main.py
+from fastapi import FastAPI, Request, HTTPException
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel
+# ... existing imports ...
+import requests
+import indiapins
+import datetime
 
-st.set_page_config(page_title="Crop Recommender", page_icon="🌿", layout='centered', initial_sidebar_state="collapsed")
+app = FastAPI()
 
-def main():
-    # title
-    html_temp = """
-    <div>
-    <h1 style="color:MEDIUMSEAGREEN;text-align:left;"> Crop Recommendation  🌱 </h1>
-    </div>
-    """
-    st.markdown(html_temp, unsafe_allow_html=True)
+# ... (your existing app.mount and templates setup) ...
 
-    col1, col2 = st.columns([2, 2])
+# NEW ENDPOINT: Data for Crop Recommendations by State
+@app.get('/api/crop_by_state')
+async def get_crop_by_state_data():
+    # This is dummy data. In a real application, this would come from a database,
+    # a more sophisticated recommendation model, or a static data file.
+    crop_data = {
+        "Andhra Pradesh": ["Rice", "Tobacco", "Sugarcane"],
+        "Arunachal Pradesh": ["Rice", "Maize", "Millet"],
+        "Assam": ["Tea", "Rice", "Jute"],
+        "Bihar": ["Rice", "Wheat", "Maize"],
+        "Chhattisgarh": ["Rice", "Maize", "Pulses"],
+        "Goa": ["Rice", "Cashew", "Coconut"],
+        "Gujarat": ["Cotton", "Groundnut", "Tobacco"],
+        "Haryana": ["Wheat", "Rice", "Sugarcane"],
+        "Himachal Pradesh": ["Apple", "Potato", "Maize"],
+        "Jharkhand": ["Rice", "Maize", "Pulses"],
+        "Karnataka": ["Coffee", "Sugarcane", "Rice"],
+        "Kerala": ["Rubber", "Spices", "Coconut"],
+        "Madhya Pradesh": ["Soybean", "Wheat", "Gram"],
+        "Maharashtra": ["Sugarcane", "Cotton", "Jowar"],
+        "Manipur": ["Rice", "Maize", "Potato"],
+        "Meghalaya": ["Rice", "Maize", "Potato"],
+        "Mizoram": ["Rice", "Maize", "Ginger"],
+        "Nagaland": ["Rice", "Maize", "Pulses"],
+        "Odisha": ["Rice", "Pulses", "Oilseeds"],
+        "Punjab": ["Wheat", "Rice", "Cotton"],
+        "Rajasthan": ["Bajra", "Wheat", "Mustard"],
+        "Sikkim": ["Cardamom", "Ginger", "Oranges"],
+        "Tamil Nadu": ["Sugarcane", "Rice", "Groundnut"],
+        "Telangana": ["Rice", "Cotton", "Maize"],
+        "Tripura": ["Rice", "Jute", "Tea"],
+        "Uttar Pradesh": ["Wheat", "Sugarcane", "Rice"],
+        "Uttarakhand": ["Rice", "Wheat", "Maize"],
+        "West Bengal": ["Rice", "Jute", "Tea"]
+    }
+    return crop_data # FastAPI automatically converts dictionary to JSON
 
-    with col1: 
-        with st.expander(" ℹ️ Information", expanded=True):
-            st.write("""
-            Crop recommendation is one of the most important aspects of precision agriculture. Crop recommendations are based on a number of factors. Precision agriculture seeks to define these criteria on a site-by-site basis in order to address crop selection issues. While the "site-specific" methodology has improved performance, there is still a need to monitor the systems' outcomes.Precision agriculture systems aren't all created equal. 
-            However, in agriculture, it is critical that the recommendations made are correct and precise, as errors can result in significant material and capital loss.
-
-            """)
-        '''
-        ## How does it work ❓ 
-        Complete all the parameters and the machine learning model will predict the most suitable crops to grow in a particular farm based on various parameters
-        '''
-
-
-    with col2:
-        st.subheader("Find out the most suitable crop to grow in your farm 👨‍🌾")
-        N = st.number_input("Nitrogen", 1, 10000)
-        P = st.number_input("Phosphorus", 1, 10000)
-        K = st.number_input("Potassium", 1, 10000)
-        temp = st.number_input("Temperature", 0.0, 100000.0)
-        humidity = st.number_input("Humidity in %", 0.0, 100000.0)
-        ph = st.number_input("Ph", 0.0, 100000.0)
-        rainfall = st.number_input("Rainfall in mm", 0.0, 100000.0)
-
-        # Create a feature list from the user inputs
-        feature_list = [N, P, K, temp, humidity, ph, rainfall]
-        single_pred = np.array(feature_list).reshape(1, -1)
-
-        if st.button('Predict'):
-            loaded_model = joblib.load("model.joblib")
-
-            try:
-                # Attempt to make a prediction
-                prediction = loaded_model.predict(single_pred)
-                col1.write('''
-                ## Results 🔍 
-                ''')
-                col1.success(f"{prediction.item().title()} are recommended by the A.I for your farm.")
-
-            except AttributeError as e:
-                # Handle the AttributeError (no var_ attribute for GaussianNB)
-                st.error("Error making prediction. This model might not support the 'var_' attribute.")
-                st.error(str(e))
-
-    hide_menu_style = """
-    <style>
-    #MainMenu {visibility: hidden;}
-    </style>
-    """
-
-hide_menu_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        </style>
-        """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
-
-if __name__ == '__main__':
-	main()
+# ... (your existing routes like '/', '/get_weather', etc.) ...

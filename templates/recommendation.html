@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crop Recommendation - CropWise AI</title>
-    <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Custom CSS for additional styling -->
-    <link rel="stylesheet" href="/static/styles.css">
-    <!-- Google Font - Inter -->
+    <link rel="stylesheet" href="/static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles for the Inter font */
         body {
             font-family: 'Inter', sans-serif;
+        }
+        .input-field {
+            @apply w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 ease-in-out;
+        }
+        .form-group label {
+            @apply text-gray-700 text-sm font-semibold mb-2 block;
         }
     </style>
 </head>
@@ -21,11 +23,9 @@
     <!-- Header Section -->
     <header class="bg-white shadow-md p-4 sticky top-0 z-50">
         <nav class="container mx-auto flex justify-between items-center flex-wrap">
-            <!-- Logo/Brand Name -->
             <a href="/index" class="text-2xl font-bold text-green-700 hover:text-green-800 transition duration-300 ease-in-out">
                 CropWise AI
             </a>
-            <!-- Navigation Links -->
             <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 mt-4 sm:mt-0">
                 <a href="/index" class="text-gray-600 hover:text-green-700 font-medium transition duration-300 ease-in-out px-3 py-2 rounded-md hover:bg-gray-100">Home</a>
                 <a href="/recommendation" class="text-green-700 font-medium transition duration-300 ease-in-out px-3 py-2 rounded-md bg-gray-100">Crop Recommendation</a>
@@ -40,43 +40,79 @@
         <h1 class="text-4xl font-bold text-center text-green-700 mb-10">Get Your Crop Recommendation</h1>
         <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
             Enter your soil and environmental parameters below to get the most suitable crop suggestions.
-            <strong class="text-red-500">Note: This is a front-end demonstration. Actual recommendations require a backend system.</strong>
         </p>
 
         <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
-            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6" action="/get-recommendations" method="post">
                 <!-- Soil Macronutrients -->
-                <div>
-                    <label for="nitrogen" class="block text-gray-700 text-sm font-semibold mb-2">Nitrogen (N) in ppm:</label>
-                    <input type="number" id="nitrogen" name="nitrogen" placeholder="e.g., 60" class="input-field" required>
+                <h3 class="md:col-span-2 text-xl font-semibold text-gray-800 mb-2">Soil Information:</h3>
+                <div class="form-group">
+                    <label for="nitrogen">Nitrogen (N) in ppm:</label>
+                    <input type="number" id="nitrogen" name="nitrogen" placeholder="e.g., 60" class="input-field" required value="{{ nitrogen if nitrogen is defined and nitrogen is not none else '' }}">
                 </div>
-                <div>
-                    <label for="phosphorus" class="block text-gray-700 text-sm font-semibold mb-2">Phosphorus (P) in ppm:</label>
-                    <input type="number" id="phosphorus" name="phosphorus" placeholder="e.g., 30" class="input-field" required>
+                <div class="form-group">
+                    <label for="phosphorus">Phosphorus (P) in ppm:</label>
+                    <input type="number" id="phosphorus" name="phosphorus" placeholder="e.g., 30" class="input-field" required value="{{ phosphorus if phosphorus is defined and phosphorus is not none else '' }}">
                 </div>
-                <div>
-                    <label for="potassium" class="block text-gray-700 text-sm font-semibold mb-2">Potassium (K) in ppm:</label>
-                    <input type="number" id="potassium" name="potassium" placeholder="e.g., 40" class="input-field" required>
+                <div class="form-group">
+                    <label for="potassium">Potassium (K) in ppm:</label>
+                    <input type="number" id="potassium" name="potassium" placeholder="e.g., 40" class="input-field" required value="{{ potassium if potassium is defined and potassium is not none else '' }}">
                 </div>
 
                 <!-- pH Level -->
-                <div>
-                    <label for="ph" class="block text-gray-700 text-sm font-semibold mb-2">pH Level:</label>
-                    <input type="number" id="ph" name="ph" step="0.1" min="0" max="14" placeholder="e.g., 6.5" class="input-field" required>
+                <div class="form-group">
+                    <label for="ph">pH Level:</label>
+                    <input type="number" id="ph" name="ph" step="0.1" min="0" max="14" placeholder="e.g., 6.5" class="input-field" required value="{{ ph if ph is defined and ph is not none else '' }}">
                 </div>
 
                 <!-- Environmental Parameters -->
-                <div>
-                    <label for="temperature" class="block text-gray-700 text-sm font-semibold mb-2">Temperature (°C):</label>
+                <h3 class="md:col-span-2 text-xl font-semibold text-gray-800 mb-2 mt-4">Environmental & Farm Details:</h3>
+                <div class="form-group">
+                    <label for="temperature">Temperature (°C):</label>
                     <input type="number" id="temperature" name="temperature" step="0.1" placeholder="e.g., 25.5" class="input-field" required>
                 </div>
-                <div>
-                    <label for="humidity" class="block text-gray-700 text-sm font-semibold mb-2">Humidity (%):</label>
+                <div class="form-group">
+                    <label for="humidity">Humidity (%):</label>
                     <input type="number" id="humidity" name="humidity" step="0.1" min="0" max="100" placeholder="e.g., 70" class="input-field" required>
                 </div>
-                <div>
-                    <label for="rainfall" class="block text-gray-700 text-sm font-semibold mb-2">Rainfall (mm):</label>
+                <div class="form-group">
+                    <label for="rainfall">Rainfall (mm):</label>
                     <input type="number" id="rainfall" name="rainfall" step="0.1" placeholder="e.g., 120.3" class="input-field" required>
+                </div>
+
+                <!-- Personalized Recommendation Inputs -->
+                <div class="form-group">
+                    <label for="season">Growing Season</label>
+                    <select id="season" name="season" class="input-field" required>
+                        <option value="">Select Season</option>
+                        <option value="spring">Spring</option>
+                        <option value="summer">Summer</option>
+                        <option value="monsoon">Monsoon</option>
+                        <option value="winter">Winter</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="farm-size">Farm Size (acres)</label>
+                    <input type="number" id="farm-size" name="farm-size" placeholder="Enter farm size" min="0.1" step="0.1" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="soil-type">Soil Type</label>
+                    <select id="soil-type" name="soil-type" class="input-field" required>
+                        <option value="">Select Soil Type</option>
+                        <option value="clay">Clay</option>
+                        <option value="sandy">Sandy</option>
+                        <option value="loamy">Loamy</option>
+                        <option value="silty">Silty</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="water-source">Water Source</label>
+                    <select id="water-source" name="water-source" class="input-field" required>
+                        <option value="">Select Water Source</option>
+                        <option value="rainfall">Rainfall Dependent</option>
+                        <option value="irrigation">Irrigation Available</option>
+                        <option value="both">Both</option>
+                    </select>
                 </div>
 
                 <!-- Submit Button -->
@@ -86,19 +122,6 @@
                     </button>
                 </div>
             </form>
-
-            <!-- Placeholder for Recommendation Results -->
-            <div id="recommendation-results" class="mt-12 p-6 bg-gray-50 rounded-lg border border-gray-200 hidden">
-                <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Recommended Crops:</h3>
-                <ul class="list-disc list-inside text-gray-700 space-y-2">
-                    <li><strong>Crop A:</strong> Ideal for your soil's pH and nutrient levels.</li>
-                    <li><strong>Crop B:</strong> Thrives in the given temperature and humidity.</li>
-                    <li><strong>Crop C:</strong> Suitable for the rainfall conditions.</li>
-                </ul>
-                <p class="text-center text-sm text-gray-500 mt-6">
-                    (This section would display dynamic results from a backend analysis.)
-                </p>
-            </div>
         </div>
     </main>
 
@@ -107,7 +130,7 @@
         <div class="container mx-auto text-center">
             <p>&copy; 2024 CropWise AI. All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
-                <a href="about.html" class="text-gray-400 hover:text-white transition duration-300 ease-in-out">About</a>
+                <a href="/about" class="text-gray-400 hover:text-white transition duration-300 ease-in-out">About</a>
                 <a href="#" class="text-gray-400 hover:text-white transition duration-300 ease-in-out">Privacy Policy</a>
                 <a href="#" class="text-gray-400 hover:text-white transition duration-300 ease-in-out">Terms of Service</a>
             </div>

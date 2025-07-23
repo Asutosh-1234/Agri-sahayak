@@ -11,8 +11,14 @@ import os
 import joblib
 import warnings
 import uvicorn
+import indiapins
+from flask import jsonify
+from flask import request
+import requests
+from dotenv import load_dotenv
 
 warnings.filterwarnings('ignore')
+load_dotenv()
 
 app = FastAPI()
 
@@ -104,9 +110,9 @@ async def read_rt(request: Request):
 async def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
 
-@app.get("/recommendation", response_class=HTMLResponse)
+@app.get("/recommendations", response_class=HTMLResponse)
 async def recommendation(request: Request):
-    return templates.TemplateResponse("recommendation.html", {"request": request})
+    return templates.TemplateResponse("recommendations.html", {"request": request})
 
 @app.get("/soil-analysis", response_class=HTMLResponse)
 async def soil_analysis_form(request: Request):
@@ -263,6 +269,7 @@ async def predict_crop(
         "predicted_crop": predicted_crop,
         "error": False
     })
+
 
 
 # --- Uvicorn Run ---
