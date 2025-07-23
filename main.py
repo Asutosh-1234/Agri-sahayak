@@ -4,51 +4,101 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 import pandas as pd
 import os
-import pickle
 import joblib
 import warnings
 import uvicorn
 
 warnings.filterwarnings('ignore')
 
-
 app = FastAPI()
 
+# Define file paths for model and scaler
+MODEL_PATH = "model.joblib"
+SCALER_PATH = "scaler.joblib"
+DATA_PATH = "Crop_recommendation.csv"
 
-df = pd.read_csv("Crop_recommendation.csv")
+# --- Model Training and Saving (Run only if model/scaler don't exist) ---
+# This block ensures the model is trained and saved only once,
+# preventing retraining on every application startup.
+if not os.path.exists(MODEL_PATH) or not os.path.exists(SCALER_PATH):
+    print("Model or scaler not found. Training and saving the model...")
+    try:
+        df = pd.read_csv(DATA_PATH)
 
-features = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
-X = df[features]
-y = df['label'] 
+        features = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
+        X = df[features]
+        y = df['label']
 
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-X_scaled_df = pd.DataFrame(X_scaled, columns=features)
+        scaler = StandardScaler()
+        X_scaled = scaler.fit_transform(X)
+        X_scaled_df = pd.DataFrame(X_scaled, columns=features)
 
-X_train, X_test, y_train, y_test = train_test_split(X_scaled_df, y, test_size=0.2, random_state=42, stratify=y)
+        X_train, X_test, y_train, y_test = train_test_split(X_scaled_df, y, test_size=0.2, random_state=42, stratify=y)
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+        model.fit(X_train, y_train)
+
+        # Save the model
+        joblib.dump(model, MODEL_PATH)
+        print(f"Trained model saved as {MODEL_PATH}")
+
+        # Save the scaler
+        joblib.dump(scaler, SCALER_PATH)
+        print(f"Scaler saved as {SCALER_PATH}")
+
+        # Display unique crop labels to check for imbalance
+        print("Unique Crops and their counts:\n", y.value_counts())
+
+    except FileNotFoundError:
+        print(f"Error: {DATA_PATH} not found. Please ensure the dataset is in the correct directory.")
+        model = None
+        scaler = None
+    except Exception as e:
+        print(f"An error occurred during model training: {e}")
+        model = None
+        scaler = None
+else:
+    print("Model and scaler already exist. Skipping training.")
 
 
+# --- Global Model and Scaler Loading ---
+# Load the trained model and scaler once when the application starts
+# This makes them available globally for prediction endpoints.
+model = None
+scaler = None
+try:
+    if os.path.exists(MODEL_PATH):
+        model = joblib.load(MODEL_PATH)
+        print(f"✅ Model loaded successfully from {MODEL_PATH}.")
+    else:
+        print(f"⚠️ {MODEL_PATH} not found. Crop prediction feature will not work.")
+
+    if os.path.exists(SCALER_PATH):
+        scaler = joblib.load(SCALER_PATH)
+        print(f"✅ Scaler loaded successfully from {SCALER_PATH}.")
+    else:
+        print(f"⚠️ {SCALER_PATH} not found. Crop prediction feature will not work.")
+
+except Exception as e:
+    print(f"❌ Error loading model or scaler: {e}. Crop prediction feature will not work.")
 
 
-# Display unique crop labels to check for imbalance
-print("Unique Crops and their counts:\n", y.value_counts())
-
+# --- Static Files and Templates Setup ---
 app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")  
+templates = Jinja2Templates(directory="templates")
 
 
+# --- Routes for Navigation ---
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-
 @app.get("/index", response_class=HTMLResponse)
 async def read_rt(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
-
 
 @app.get("/about", response_class=HTMLResponse)
 async def about(request: Request):
@@ -59,7 +109,8 @@ async def recommendation(request: Request):
     return templates.TemplateResponse("recommendation.html", {"request": request})
 
 @app.get("/soil-analysis", response_class=HTMLResponse)
-async def soil_analysis(request: Request):
+async def soil_analysis_form(request: Request):
+    """Displays the soil analysis input form."""
     return templates.TemplateResponse("soil-analysis.html", {"request": request})
 
 @app.get("/fertilizer", response_class=HTMLResponse)
@@ -79,39 +130,7 @@ async def submit_form(request: Request, name: str = Form(...), email: str = Form
     return templates.TemplateResponse("form-submitted.html", {"request": request, "name": name, "email": email})
 
 
-
-#***************************************************************************************
-
-try:
-    model_path = os.path.join(os.path.dirname(__file__), "model.pkl")
-    with open(model_path, 'rb') as file:
-        model = pickle.load(file)
-except FileNotFoundError:
-    model = None
-    print("⚠️ model.pkl not found! Prediction will not work.")
-
-model = None
-try:
-    model_path = os.path.join(os.path.dirname(__file__), "model.joblib")
-    with open(model_path, 'rb') as file:
-        model = joblib.load(file)
-    print("✅ model.joblib loaded successfully for crop prediction.")
-except FileNotFoundError:
-    model = None
-    print("⚠️ model.joblib not found! Crop prediction feature will not work.")
-except Exception as e:
-    model = None
-    print(f"❌ Error loading model.joblib: {e}. Crop prediction feature will not work.")
-
-@app.get("/crop-prediction", response_class=HTMLResponse)
-async def get_crop_prediction_form(request: Request):
-    return templates.TemplateResponse("crop-prediction-form.html", {"request": request})
-
-
-
-#***************************************************************************************
-
-
+# --- Soil Analysis Logic ---
 @app.post("/analyze-soil", response_class=HTMLResponse)
 async def analyze_soil(
     request: Request,
@@ -120,28 +139,27 @@ async def analyze_soil(
     potassium: float = Form(...),
     ph: float = Form(...)
 ):
-    # Define optimal ranges for soil nutrients and pH
+    """
+    Analyzes soil nutrient levels and pH, providing recommendations.
+    """
     optimal_ranges = {
-        "nitrogen": {"min": 40, "max": 80},     # mg/kg
-        "phosphorus": {"min": 20, "max": 50},   # mg/kg
-        "potassium": {"min": 100, "max": 300},  # mg/kg
+        "nitrogen": {"min": 40, "max": 80},
+        "phosphorus": {"min": 20, "max": 50},
+        "potassium": {"min": 100, "max": 300},
         "ph": {"min": 6.0, "max": 7.5}
     }
 
-    # Perform analysis
     analysis_results = {
         "nitrogen_status": "Optimal" if optimal_ranges["nitrogen"]["min"] <= nitrogen <= optimal_ranges["nitrogen"]["max"] else "Needs Attention",
         "phosphorus_status": "Optimal" if optimal_ranges["phosphorus"]["min"] <= phosphorus <= optimal_ranges["phosphorus"]["max"] else "Needs Attention",
         "potassium_status": "Optimal" if optimal_ranges["potassium"]["min"] <= potassium <= optimal_ranges["potassium"]["max"] else "Needs Attention",
         "ph_status": "Optimal" if optimal_ranges["ph"]["min"] <= ph <= optimal_ranges["ph"]["max"] else "Needs Attention",
-        "ph_recommendation": "", # Added for specific PH recommendations
-        "nitrogen_recommendation": "", # Added for specific Nitrogen recommendations
-        "phosphorus_recommendation": "", # Added for specific Phosphorus recommendations
-        "potassium_recommendation": "" # Added for specific Potassium recommendations
-
+        "ph_recommendation": "",
+        "nitrogen_recommendation": "",
+        "phosphorus_recommendation": "",
+        "potassium_recommendation": ""
     }
 
-    # Determine overall soil health status
     soil_health_score = 0
     if analysis_results["nitrogen_status"] == "Optimal":
         soil_health_score += 1
@@ -159,7 +177,6 @@ async def analyze_soil(
     else:
         soil_health = "Poor"
 
-    # Add specific recommendations based on deviations
     if analysis_results["ph_status"] == "Needs Attention":
         if ph < optimal_ranges["ph"]["min"]:
             analysis_results["ph_recommendation"] = "Soil is too acidic. Consider adding lime to increase pH."
@@ -184,7 +201,6 @@ async def analyze_soil(
         else:
             analysis_results["potassium_recommendation"] = "Potassium is high. Generally less problematic, but monitor other nutrient levels."
 
-
     return templates.TemplateResponse("soil-analysis.html", {
         "request": request,
         "nitrogen": nitrogen,
@@ -192,11 +208,63 @@ async def analyze_soil(
         "potassium": potassium,
         "ph": ph,
         "soil_health": soil_health,
-        "analysis_results": analysis_results # Pass the detailed analysis
+        "analysis_results": analysis_results
     })
 
 
+# --- Crop Prediction Logic ---
+@app.get("/crop-prediction", response_class=HTMLResponse)
+async def get_crop_prediction_form(request: Request):
+    """Displays the form for crop prediction."""
+    return templates.TemplateResponse("crop-prediction-form.html", {"request": request})
+
+@app.post("/predict-crop", response_class=HTMLResponse)
+async def predict_crop(
+    request: Request,
+    N: float = Form(...),
+    P: float = Form(...),
+    K: float = Form(...),
+    temperature: float = Form(...),
+    humidity: float = Form(...),
+    ph: float = Form(...),
+    rainfall: float = Form(...)
+):
+    """
+    Handles crop prediction based on user input.
+    """
+    if model is None or scaler is None:
+        predicted_crop = "Error: Model or scaler not loaded. Cannot make prediction."
+        return templates.TemplateResponse("crop-prediction-results.html", {
+            "request": request,
+            "predicted_crop": predicted_crop,
+            "error": True
+        })
+
+    try:
+        # Create a numpy array from the input features
+        input_features = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
+
+        # Scale the input features using the loaded scaler
+        scaled_features = scaler.transform(input_features)
+
+        # Make prediction
+        predicted_crop = model.predict(scaled_features)[0]
+
+    except Exception as e:
+        predicted_crop = f"An error occurred during prediction: {e}"
+        return templates.TemplateResponse("crop-prediction-results.html", {
+            "request": request,
+            "predicted_crop": predicted_crop,
+            "error": True
+        })
+
+    return templates.TemplateResponse("crop-prediction-results.html", {
+        "request": request,
+        "predicted_crop": predicted_crop,
+        "error": False
+    })
 
 
+# --- Uvicorn Run ---
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
