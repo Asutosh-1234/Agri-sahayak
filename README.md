@@ -45,7 +45,7 @@ images of our platform and its features will be added here.
 
 
 
-👨‍💻 Our Team   id - team name Team(SC2) 9
+👨‍💻 Our Team   id - EcoGrow Team(SC2) 9
 Role	Name	Roll No.	Registration No.
 Member 1	Akankhya Khadanga	24CSE347	24UG010406
 Member 2	Tejaswini Pattojoshi	24BCA004	24UG040003
