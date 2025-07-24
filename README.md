@@ -50,6 +50,10 @@ images of our platform and its features will be added here.
 <img width="1919" height="972" alt="image" src="https://github.com/user-attachments/assets/267f9e2f-407a-4c58-922b-cdf84f1cf2fe" />
 
 
+[Green Yellow Minimalist Agriculture Presentation.pdf.pdf](https://github.com/user-attachments/files/21400165/Green.Yellow.Minimalist.Agriculture.Presentation.pdf.pdf)
+
+
+
 
 👨‍💻 Our Team   id - Ctrl+Crop Team(SC2) 9
 Role	Name	Roll No.	Registration No.
