@@ -69,6 +69,7 @@ Bash
 --->>>pip install -r requirements.txt
 
 
+Youtube link ->   https://youtu.be/-YO2-Ak8sz4
 Run the application:
 
 Bash
