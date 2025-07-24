@@ -41,6 +41,16 @@ Precise Dosage: Most importantly, it recommends the exact amount of fertilizer n
 
 
 images of our platform and its features will be added here.
+<img width="1919" height="972" alt="image" src="https://github.com/user-attachments/assets/a532a503-d2c4-437a-bdf0-e34f2c3aa707" />
+
+<img width="1919" height="972" alt="image" src="https://github.com/user-attachments/assets/e043c5c6-2303-4f75-8920-c1af1e5b5d0b" />
+
+<img width="1919" height="971" alt="image" src="https://github.com/user-attachments/assets/f39e783b-7de6-4d45-af0f-bb1425742381" />
+
+<img width="1919" height="972" alt="image" src="https://github.com/user-attachments/assets/267f9e2f-407a-4c58-922b-cdf84f1cf2fe" />
+
+
+[Green Yellow Minimalist Agriculture Presentation.pdf.pdf](https://github.com/user-attachments/files/21400165/Green.Yellow.Minimalist.Agriculture.Presentation.pdf.pdf)
 
 
 
