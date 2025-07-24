@@ -39,7 +39,13 @@ Specific Suitability: The guide specifies exactly which fertilizers are most sui
 
 Precise Dosage: Most importantly, it recommends the exact amount of fertilizer needed, helping you prevent overuse, reduce input costs, and minimize environmental impact.
 
-👨‍💻 Our Team
+
+images of our platform and its features will be added here.
+
+
+
+
+👨‍💻 Our Team   id - team name Team(SC2) 9
 Role	Name	Roll No.	Registration No.
 Member 1	Akankhya Khadanga	24CSE347	24UG010406
 Member 2	Tejaswini Pattojoshi	24BCA004	24UG040003
@@ -60,16 +66,13 @@ Install dependencies (if any):
 
 Bash
 
-pip install -r requirements.txt
-Set up environment variables (if any):
+--->>>pip install -r requirements.txt
 
-API_KEY=your_weather_api_key
-
-...
 
 Run the application:
 
 Bash
 
-python app.py
+->>>uvicorn main:app --reload
+
 Access the application: Open your web browser and go to http://127.0.0.1:5000 (or the specified address).
