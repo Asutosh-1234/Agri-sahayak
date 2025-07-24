@@ -53,7 +53,7 @@ images of our platform and its features will be added here.
 [Green Yellow Minimalist Agriculture Presentation.pdf.pdf](https://github.com/user-attachments/files/21400165/Green.Yellow.Minimalist.Agriculture.Presentation.pdf.pdf)
 
 
-
+https://1drv.ms/w/c/7c0c553cc1d13e85/EScJN9XRW25PpwGlUCnqQ5kBtcKO9uUzi4-6Sh7pPzy7eA?e=uxOgF1
 
 👨‍💻 Our Team   id - Ctrl+Crop Team(SC2) 9
 Role	Name	Roll No.	Registration No.
