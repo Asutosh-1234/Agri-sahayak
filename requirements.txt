@@ -1,10 +1,10 @@
-numpy
-pandas
-streamlit
-plotly
-seaborn
-pandas_profiling
-matplotlib
+numpy==2.3.2
+pandas==2.3.1
+streamlit==1.48.0
+plotly==6.2.0
+seaborn==0.13.2
+ydata-profiling==4.6.4
+matplotlib==3.10.5
 scikit-learn==1.4.2
 joblib==1.4.2
 fastapi==0.111.0
