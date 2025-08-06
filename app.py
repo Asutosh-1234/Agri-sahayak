@@ -12,8 +12,8 @@ import joblib
 import warnings
 import uvicorn
 import indiapins
-from flask import jsonify
-from flask import request
+# from flask import jsonify
+# from flask import request
 import requests
 from dotenv import load_dotenv
 
