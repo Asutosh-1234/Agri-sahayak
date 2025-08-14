@@ -71,32 +71,16 @@ Optimize your fertilization strategy and reduce waste:
 git clone [your-repository-link-here]
 cd CropWise
 2️⃣ Install Dependencies
-bash
-Copy
-Edit
+```
 pip install -r requirements.txt
-3️⃣ Run the Application
-bash
-Copy
-Edit
+3️⃣ Run the Applicationbash
+
 uvicorn main:app --reload
 4️⃣ Access the Application
 Open your browser and go to:
 
-cpp
-Copy
-Edit
 http://127.0.0.1:5000
-🎥 Demo Video
-📺 Watch on YouTube
-
+```
 📜 License
 This project is licensed under the MIT License – you are free to use and modify it with attribution.
-
-yaml
-Copy
-Edit
-
----
-
-If you want, I can also **enhance this README with GitHub badges** (Python version, FastAPI, License, Hackathon project, etc
+```
