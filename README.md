@@ -71,7 +71,7 @@ Optimize your fertilization strategy and reduce waste:
 git clone [your-repository-link-here]
 cd CropWise
 2️⃣ Install Dependencies
-```
+
 pip install -r requirements.txt
 3️⃣ Run the Applicationbash
 
@@ -81,6 +81,9 @@ Open your browser and go to:
 
 http://127.0.0.1:5000
 ```
+
 📜 License
+```
 This project is licensed under the MIT License – you are free to use and modify it with attribution.
 ```
+
